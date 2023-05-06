@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.anildevops;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +8,7 @@ public class HelloController {
 
     @RequestMapping("/")
     public String index() {
-        return "WELL COME TO MY WORLD !";
+        return "Anil devops-project !";
     }
 
-}
+ }
