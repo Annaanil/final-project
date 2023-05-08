@@ -1,0 +1,52 @@
+pipeline {
+    agent {
+        node {
+            label 'java17'
+        }
+    
+    }
+
+    options {
+                timestamps()
+                buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '2'))
+                timeout(time: 240, unit: 'MINUTES')
+                disableConcurrentBuilds()
+                }
+
+        stages {
+
+            stage ('AppCodeCheckout') {
+                steps {
+
+                    git 'https://github.com/Annaanil/final-project.git'
+
+                }
+            }
+            stage ('CI Build') {
+
+                steps {
+                    
+                     
+                    sh 'mvn clean package'
+
+                    
+
+                     }
+    
+            }
+
+            stage ('Docker Build && Push && RUN ') {
+               
+
+                steps {
+                    
+                    sh 'docker build . -t anilkumar0123456789/java17:latest'
+                    sh 'docker login -u anilkumar0123456789 -p dckr_pat_XMkHVyIbe54VNpXMW8bXbZwpasA'
+                    sh 'docker push anilkumar0123456789/java17:latest'
+                    sh 'docker run -p 2025:8080 -d anilkumar0123456789/java17:latest'
+                    
+                }
+
+                }
+            }
+    }
