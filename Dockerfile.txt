@@ -1,3 +1,8 @@
+FROM openjdk:17-jdk-slim
+VOLUME /tmp
+COPY target/anil-devops*.jar app.jar
+CMD java -jar app.jar
+
 pipeline {
     agent {
         node {
@@ -39,38 +44,14 @@ pipeline {
                
 
                 steps {
-
-                    withCredentials([string(credentialsId: 'DOCKER-PWD', variable: 'DOCKER_TOKEN')]) {
-                    // some block
-
+                    
                     sh 'docker build . -t anilkumar0123456789/java17:latest'
-                    sh 'docker login -u anilkumar0123456789 -p ${DOCKER_TOKEN}'
+                    sh 'docker login -u anilkumar0123456789 -p dckr_pat_XMkHVyIbe54VNpXMW8bXbZwpasA'
                     sh 'docker push anilkumar0123456789/java17:latest'
-                    sh 'docker run -p 2022:8080 -d anilkumar0123456789/java17:latest'
-                    }
-
-                }    
+                    sh 'docker run -p 2025:8080 -d anilkumar0123456789/java17:latest'
                     
-            }
-            stage('archive and clean workspace') {
-                steps {
-                    
-                    archiveArtifacts artifacts: 'target/anil-devops*.jar', followSymlinks: false
-                    cleanWs()
                 }
-            }              
-        }
 
-    }   
-    
-
-
-
-            
-              
-                
-
-                
-            
-    
-
+                }
+            }
+    }
