@@ -55,7 +55,7 @@ pipeline {
             stage('archive and clean workspace') {
                 steps {
                     
-                    archiveArtifacts artifacts: 'target/anil-devops*.jar', followSymlinks: false
+                    archiveArtifacts artifacts: 'target/anil-devops123*.jar', followSymlinks: false
                     cleanWs()
                 }
             }              
