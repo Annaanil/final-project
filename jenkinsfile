@@ -39,9 +39,12 @@ pipeline {
                
 
                 steps {
+
+                    withCredentials([string(credentialsId: 'DOCKER-PWD', variable: 'DOCKER-TOKEN')]) {
+                    // some block
                     
                     sh 'docker build . -t anilkumar0123456789/java17:latest'
-                    sh 'docker login -u anilkumar0123456789 -p dckr_pat_XMkHVyIbe54VNpXMW8bXbZwpasA'
+                    sh 'docker login -u anilkumar0123456789 -p $('DOCKER-TOKEN')'
                     sh 'docker push anilkumar0123456789/java17:latest'
                     sh 'docker run -p 2026:8080 -d anilkumar0123456789/java17:latest'
                     
@@ -50,3 +53,4 @@ pipeline {
                 }
             }
     }
+}
