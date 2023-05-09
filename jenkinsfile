@@ -46,11 +46,30 @@ pipeline {
                     sh 'docker build . -t anilkumar0123456789/java17:latest'
                     sh 'docker login -u anilkumar0123456789 -p ${DOCKER_TOKEN}'
                     sh 'docker push anilkumar0123456789/java17:latest'
-                    sh 'docker run -p 2021:8080 -d anilkumar0123456789/java17:latest'
-                    
-                }
+                    // sh 'docker run -p 2021:8080 -d anilkumar0123456789/java17:latest'
+            
+            stage ('archive and clean workspace') {
+                steps {
+                    archiveArtifacts artifacts: 'target/anil-devops* .jar', followSymlinks: false
 
+
+                    cleanWs()
                 }
-            }
-    }
+            }              
+        }
+
+    }   
+    
 }
+
+
+            
+}  
+    
+}              
+                
+
+                
+            
+    
+
