@@ -48,9 +48,9 @@ pipeline {
                     sh 'docker push anilkumar0123456789/java17:latest'
                     // sh 'docker run -p 2021:8080 -d anilkumar0123456789/java17:latest'
             
-            stage ('archive and clean workspace') {
+            stage('archive and clean workspace') {
                 steps {
-                    archiveArtifacts artifacts: 'target/anil-devops* .jar', followSymlinks: false
+                    archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
 
 
                     cleanWs()
