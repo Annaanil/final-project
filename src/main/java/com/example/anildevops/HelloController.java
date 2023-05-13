@@ -8,7 +8,7 @@ public class HelloController {
 
     @RequestMapping("/")
     public String index() {
-        return "Anil devops-final-project java 11 succesfully done by me !!!!";
+        return "Anil devops-final-project java 17 succesfully done by me !!!!";
     }
 
  }
